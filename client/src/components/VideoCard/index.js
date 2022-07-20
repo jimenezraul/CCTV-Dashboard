@@ -1,28 +1,34 @@
 import { useEffect, useRef } from "react";
 import { loadPlayer } from "rtsp-relay/browser";
-import { Card } from "@mui/material";
+import Card from "@mui/material/Card";
 
 const VideoCard = ({ video }) => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
-    loadPlayer({
-      url: video.url,
-      canvas: canvasRef.current,
-      //no audio
-      audio: false,
-      // optional
-      onSourceEstablished: () => {
-        canvasRef.current.style.display = "flex";
-      },
-    });
+    async function onPlayerReady() {
+      await loadPlayer({
+        url: video.url,
+        canvas: canvasRef.current,
+        //no audio
+        audio: false,
+        // optional
+        // create a link from the stream
+      });
+      canvasRef.current.style.display = "flex";
+    }
+    onPlayerReady();
   }, [video]);
 
   return (
     <div className='p-2'>
-      <Card className='border border-gray-300 shadow-lg'>
+      <Card
+        sx={{
+          borderRadius: "10px",
+        }}
+      >
         <canvas
-          className='w-full'
+          className='w-full rounded-t-lg'
           id={video.camera}
           key={video.camera}
           ref={canvasRef}
