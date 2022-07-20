@@ -12,8 +12,7 @@ const VideoCard = ({ video }) => {
         canvas: canvasRef.current,
         //no audio
         audio: false,
-        // optional
-        // create a link from the stream
+
       });
       canvasRef.current.style.display = "flex";
     }

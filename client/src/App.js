@@ -34,10 +34,10 @@ function App() {
   }, [host, cctv_url]);
 
   return (
-    <div className='App flex flex-col h-screen'>
+    <div className='App flex flex-col justify-between h-screen'>
       <Navbar />
-      <div className='container flex-1 mx-auto flex flex-wrap'>
-        <div className='flex flex-wrap w-full'>
+      <div className='lg:container mx-auto flex-1'>
+        <div className='flex flex-wrap w-full my-4'>
           {videos.map((video) => (
             <div
               key={video.camera}
